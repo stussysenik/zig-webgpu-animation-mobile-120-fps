@@ -1,0 +1,417 @@
+:root {
+  color-scheme: dark;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: #061116;
+  color: #eef9ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--accent, #8ef6d3) 24%, transparent), transparent 28%),
+    radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--glow, #ffbf89) 20%, transparent), transparent 34%),
+    linear-gradient(180deg, #07161b 0%, #091923 48%, #050b12 100%);
+}
+
+button {
+  font: inherit;
+}
+
+.shell {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  min-height: 100vh;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.25rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+
+.shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent, #8ef6d3) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--glow, #ffbf89) 7%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 85%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.ambient {
+  position: absolute;
+  inset: auto;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  filter: blur(42px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.ambient-a {
+  top: 3rem;
+  right: -3rem;
+  background: var(--accent, #8ef6d3);
+}
+
+.ambient-b {
+  bottom: 9rem;
+  left: -4rem;
+  background: var(--glow, #ffbf89);
+}
+
+.panel {
+  position: relative;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface, #11323b) 74%, #051219) 0%, rgba(6, 18, 25, 0.88) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent, #8ef6d3) 18%, rgba(255, 255, 255, 0.08));
+  border-radius: 1.5rem;
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(22px);
+}
+
+.reveal {
+  animation: rise-in 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero-panel,
+.stage-panel,
+.gallery-panel {
+  padding: 1.1rem;
+}
+
+.hero-topline,
+.stage-header,
+.controls-row,
+.gallery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.brand-chip,
+.status-chip,
+.mini-badge,
+.install-hint,
+.stage-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+}
+
+.brand-chip,
+.status-chip,
+.mini-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.45rem 0.72rem;
+}
+
+.status-chip {
+  color: var(--accent, #8ef6d3);
+}
+
+.hero-copy {
+  padding-top: 1.2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.55rem;
+  color: color-mix(in srgb, var(--accent, #8ef6d3) 72%, #fff);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Georgia", serif;
+  font-size: clamp(2.6rem, 6vw, 4.9rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.lede,
+.body-copy,
+.stage-subtitle,
+.scene-card span,
+.metric-card small,
+.install-hint,
+.capability-warning {
+  color: rgba(236, 247, 255, 0.78);
+}
+
+.lede {
+  margin: 0.9rem 0 0.6rem;
+  font-size: 1.05rem;
+  max-width: 36rem;
+}
+
+.body-copy {
+  margin: 0;
+  max-width: 36rem;
+}
+
+.badge-row,
+.gallery-strip {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-top: 1rem;
+  scrollbar-width: none;
+}
+
+.badge-row::-webkit-scrollbar,
+.gallery-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.stage-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.stage-nav {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.nav-button,
+.segmented-button,
+.install-button,
+.scene-card {
+  border: 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.nav-button {
+  width: 2.9rem;
+  height: 2.9rem;
+  color: white;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(10, 18, 24, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-button:hover,
+.nav-button:focus-visible,
+.segmented-button:hover,
+.segmented-button:focus-visible,
+.install-button:hover,
+.install-button:focus-visible,
+.scene-card:hover,
+.scene-card:focus-visible {
+  transform: translateY(-1px);
+}
+
+.stage-shell {
+  position: relative;
+  min-height: min(56vh, 34rem);
+  overflow: hidden;
+  border-radius: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--accent, #8ef6d3) 13%, transparent), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(2, 6, 10, 0.16));
+}
+
+.stage-canvas,
+.stage-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stage-canvas {
+  touch-action: none;
+}
+
+.stage-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 88%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.controls-row {
+  flex-wrap: wrap;
+}
+
+.segmented-control {
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(4, 12, 17, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.segmented-button {
+  padding: 0.72rem 0.95rem;
+  background: transparent;
+  color: rgba(240, 247, 255, 0.7);
+}
+
+.segmented-button.is-active {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent, #8ef6d3) 30%, #fff), var(--surface, #11323b));
+  color: white;
+}
+
+.install-button {
+  padding: 0.8rem 1.1rem;
+  background: color-mix(in srgb, var(--accent, #8ef6d3) 32%, var(--surface, #11323b));
+  color: white;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.metric-card {
+  padding: 1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.metric-card span {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: rgba(236, 247, 255, 0.68);
+}
+
+.metric-card strong {
+  font-family: "Iowan Old Style", "Georgia", serif;
+  font-size: 1.85rem;
+  letter-spacing: -0.04em;
+}
+
+.gallery-strip {
+  padding-top: 1rem;
+}
+
+.scene-card {
+  min-width: min(16rem, 78vw);
+  padding: 1rem;
+  text-align: left;
+  display: grid;
+  gap: 0.4rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.scene-card.is-active {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--accent, #8ef6d3) 24%, rgba(255, 255, 255, 0.09)), rgba(255, 255, 255, 0.04));
+  border-color: color-mix(in srgb, var(--accent, #8ef6d3) 40%, rgba(255, 255, 255, 0.08));
+}
+
+.scene-card-index {
+  color: color-mix(in srgb, var(--accent, #8ef6d3) 66%, white);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+}
+
+.capability-warning {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 165, 0, 0.11);
+  border: 1px solid rgba(255, 191, 0, 0.22);
+}
+
+@media (min-width: 820px) {
+  .shell {
+    grid-template-columns: minmax(18rem, 30rem) minmax(0, 1fr);
+    align-items: start;
+    padding-inline: clamp(1.25rem, 4vw, 2.4rem);
+    gap: 1.15rem;
+  }
+
+  .hero-panel {
+    grid-column: 1;
+  }
+
+  .stage-panel {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .metrics-grid,
+  .gallery-panel {
+    grid-column: 1;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scene-card {
+    min-width: 100%;
+  }
+
+  .gallery-strip {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+
+  .nav-button,
+  .segmented-button,
+  .install-button,
+  .scene-card {
+    transition: none;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

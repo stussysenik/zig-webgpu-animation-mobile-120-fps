@@ -1,0 +1,23 @@
+{
+  "name": "zig-webgpu-animation-mobile-120-fps",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.9",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:engine": "node scripts/build-engine.mjs",
+    "dev": "node scripts/build-engine.mjs && vite apps/web --host",
+    "build": "node scripts/build-engine.mjs && tsc --noEmit -p apps/web/tsconfig.json && vite build apps/web",
+    "typecheck": "tsc --noEmit -p apps/web/tsconfig.json",
+    "test:engine": "zig test packages/engine-wasm/src/engine.zig",
+    "doctor": "npx -y react-doctor@latest . --verbose --diff"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@webgpu/types": "^0.1.66",
+    "typescript": "^5.8.2"
+  }
+}
