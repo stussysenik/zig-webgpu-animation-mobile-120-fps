@@ -1,5 +1,8 @@
 # zig-webgpu-animation-mobile-120-fps
 
+![Demo](demo.gif)
+
+
 Mobile-first Zig + WebGPU animation gallery built as a web app first, with a clean path to package the experience for iOS later.
 
 ## Stack
